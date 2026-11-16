@@ -136,6 +136,14 @@
           return;
         }
 
+        // Never let a lagging API manifest point the download buttons at an
+        // older APK than the one bundled on this site.
+        if (Number(release.latestVersionCode) < 5) {
+          useBundled('The bundled v1.2.1 APK is newer than the API manifest (v' +
+            (release.latestVersionName || '?') + ').');
+          return;
+        }
+
         statusBox.classList.add('is-live');
         if (title) title.textContent = 'Latest release: v' + (release.latestVersionName || '?');
         var bits = [];
