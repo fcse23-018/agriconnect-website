@@ -19,6 +19,7 @@ page and the product look like one thing:
 agriconnect-website/
 ├── index.html                       # the landing / download page
 ├── privacy.html                     # plain-language privacy notice
+├── demo.html                        # scripted 5-minute demonstration guide
 ├── styles.css                       # all styling (design tokens at the top)
 ├── script.js                        # progressive enhancement only
 ├── .nojekyll                        # serve files verbatim on GitHub Pages
