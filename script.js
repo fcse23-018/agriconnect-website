@@ -132,14 +132,14 @@
       .then(function (release) {
         window.clearTimeout(timeout);
         if (!release || !release.available || !release.downloadUrl) {
-          useBundled('No release published on Render yet — the buttons use the bundled v1.2.1 APK.');
+          useBundled('No release published on Render yet — the buttons use the bundled v1.2.2 APK.');
           return;
         }
 
         // Never let a lagging API manifest point the download buttons at an
         // older APK than the one bundled on this site.
-        if (Number(release.latestVersionCode) < 5) {
-          useBundled('The bundled v1.2.1 APK is newer than the API manifest (v' +
+        if (Number(release.latestVersionCode) < 6) {
+          useBundled('The bundled v1.2.2 APK is newer than the API manifest (v' +
             (release.latestVersionName || '?') + ').');
           return;
         }
@@ -164,7 +164,7 @@
       })
       .catch(function () {
         window.clearTimeout(timeout);
-        useBundled('The buttons use the bundled v1.2.1 APK hosted on this site.');
+        useBundled('The buttons use the bundled v1.2.2 APK hosted on this site.');
       });
   }
 })();
