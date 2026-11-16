@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AgriConnect — Live demonstration guide</title>
+<meta name="description" content="A five-minute, scripted demonstration of AgriConnect: the Android app, the live API and the USSD channel for feature phones." />
+<meta name="theme-color" content="#174D32" />
+<meta name="color-scheme" content="light" />
+<link rel="icon" href="assets/logo-mark.png" sizes="any" />
+<link rel="apple-touch-icon" href="assets/logo-mark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .demo-hero { padding: 74px 0 46px; position: relative; isolation: isolate; overflow: hidden; background: var(--deep); color: var(--warm); }
+  .demo-hero::before { content:""; position:absolute; inset:0; z-index:-1; background: linear-gradient(180deg, rgba(11,38,25,.55), rgba(16,59,39,.94)), url("assets/auth-background.jpg") center 30% / cover no-repeat; }
+  .demo-hero h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; letter-spacing: -.03em; margin: 10px 0 16px; color: var(--warm); }
+  .demo-hero .lead { max-width: 720px; }
+  .section { padding: 62px 0; }
+  .section + .section { border-top: 1px solid var(--border); }
+  .time { display:inline-block; min-width:64px; padding:3px 8px; border-radius:var(--pill); background:var(--green-container); color:var(--primary); font-size:11px; font-weight:700; }
+  .demo-link { display:block; padding:18px 20px; border:1px solid var(--border); border-radius:18px; background:#fff; text-decoration:none; color:inherit; }
+  .demo-link:hover { border-color:var(--primary); box-shadow:var(--shadow-card); }
+  .demo-link strong { display:block; font-size:15px; color:var(--primary); }
+  .demo-link code { font-size:11.5px; color:var(--muted); word-break:break-all; }
+  .demo-link span { display:block; margin-top:6px; color:var(--muted); font-size:13px; line-height:1.5; }
+  .phone-note { border:1px solid var(--border); border-radius:18px; background:#fff; padding:16px 18px; }
+  .phone-note .top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px; }
+  .phone-note .top strong { font-size:14px; }
+  .phone-note ul { margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.6; }
+  .ussd { background:#102b1c; color:#d8f3dd; border-radius:18px; padding:20px 22px; font-family:ui-monospace,Consolas,monospace; font-size:13px; line-height:1.65; overflow-x:auto; }
+  .ussd b { color:#9fe8b4; }
+  .say { border-left:3px solid var(--primary); padding:2px 0 2px 14px; margin-top:8px; color:var(--muted); font-size:13.5px; font-style:italic; line-height:1.6; }
+  .warn { border-left:4px solid var(--warning); background:#fff8e1; padding:14px 18px; border-radius:12px; font-size:13px; line-height:1.6; }
+  @media (max-width: 760px) { .demo-hero { padding:48px 0 30px; } .section { padding:44px 0; } }
+</style>
+</head>
+<body>
+
+<!-- Header --------------------------------------------------------- -->
+<header class="site-header" id="top">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="AgriConnect home">
+      <img src="assets/logo-mark.png" alt="" width="38" height="38" />
+      <span>AgriConnect</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#screens">Screens</a>
+      <a href="demo.html" aria-current="page"><strong>Demo</strong></a>
+      <a href="index.html#install">Install</a>
+      <a href="index.html#api">API</a>
+    </nav>
+    <a class="btn btn-light btn-sm" href="assets/agriConnect-1.2.1.apk" download>Download APK</a>
+  </div>
+</header>
+
+<main>
+<!-- Hero ----------------------------------------------------------- -->
+<section class="demo-hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="pulse-dot"></span> For the assessment panel</p>
+    <h1>Show, don't just tell.</h1>
+    <p class="lead">One page for the whole five-minute demonstration: the links to open, the exact
+       sequence to follow, what to say at each step, and the USSD channel that reaches farmers
+       without a smartphone.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href="#walkthrough">Start the walkthrough</a>
+      <a class="btn btn-ghost btn-lg" href="assets/agriConnect-1.2.1.apk" download>Download the APK</a>
+    </div>
+  </div>
+</section>
+
+<!-- Links ---------------------------------------------------------- -->
+<section class="section" id="links">
+  <div class="wrap">
+    <p class="kicker">Before you begin</p>
+    <h2>Open these four links first</h2>
+    <p class="section-lead">The API host can sleep on a free tier and may take up to a minute to
+       wake. Open every tab 15–20 minutes before your slot, then leave them running.</p>
+    <div class="grid grid-3" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:22px">
+      <a class="demo-link" href="index.html">
+        <strong>1 · Project website</strong>
+        <code>fcse23-018.github.io/agriconnect-website/</code>
+        <span>The public download page and release status. Shows the published v1.2.1 build.</span>
+      </a>
+      <a class="demo-link" href="https://agriconnect-api-f55x.onrender.com/health" target="_blank" rel="noopener">
+        <strong>2 · API health</strong>
+        <code>/health</code>
+        <span>Returns <code>status: ok</code> — immediate proof the backend is live.</span>
+      </a>
+      <a class="demo-link" href="https://agriconnect-api-f55x.onrender.com/api-docs" target="_blank" rel="noopener">
+        <strong>3 · Interactive API docs</strong>
+        <code>/api-docs</code>
+        <span>Swagger UI with every endpoint. Use this when the panel asks technical questions.</span>
+      </a>
+      <a class="demo-link" href="https://agriconnect-api-f55x.onrender.com/api/v1/app/version" target="_blank" rel="noopener">
+        <strong>4 · Release manifest</strong>
+        <code>/api/v1/app/version</code>
+        <span>Shows v1.2.1 / build 5, the APK URL and checksum — the verified update path.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Walkthrough ---------------------------------------------------- -->
+<section class="section" id="walkthrough">
+  <div class="wrap">
+    <p class="kicker">The main event</p>
+    <h2>Five-minute walkthrough</h2>
+    <p class="section-lead">Everything must already be open. Do not install, log in or configure
+       anything in front of the panel.</p>
+    <ol class="steps" style="margin-top:22px">
+      <li><span class="time">0:00</span>
+        <div><h3>Open on the app's Home screen</h3>
+          <p>Phone in hand, app already signed in. Point out the role-aware bottom navigation and the offline / sync strips at the top.</p>
+          <div class="say">"This is the farmer's home. Navigation changes by role, and the strips tell you instantly whether the phone is online and whether anything is waiting to sync."</div>
+        </div>
+      </li>
+      <li><span class="time">0:30</span>
+        <div><h3>Farm → Plots tab</h3>
+          <p>Show <b>Add plot</b>, <b>Harvest records</b>, <b>Livestock</b> and a plot card with its sync badge.</p>
+          <div class="say">"Plots are stored locally, so this tab works with no network at all. After our latest fix it keeps working even when the satellite service is unavailable."</div>
+        </div>
+      </li>
+      <li><span class="time">1:30</span>
+        <div><h3>Farm → Overview tab</h3>
+          <p>Show the farm map, plot status card, NDVI gauge and the advice card. If no reading exists, show the <b>Generate satellite data</b> / <b>Try again</b> actions.</p>
+          <div class="say">"Crop health: a dated Sentinel-2 reading with a plain-language action, never a bare number. A failed read now stays on this tab with a working retry instead of blanking the whole screen."</div>
+        </div>
+      </li>
+      <li><span class="time">3:00</span>
+        <div><h3>One more analysis tab, then the website</h3>
+          <p>Open <b>Chart</b>, <b>Weather</b>, <b>Growth</b>, <b>Events</b> or <b>Alerts</b> briefly; switch to the website tab on the laptop.</p>
+          <div class="say">"Every view answers a farming question and scrolls fully on the phone. The same build is published on this HTTPS page and through the in-app updater."</div>
+        </div>
+      </li>
+      <li><span class="time">4:00</span>
+        <div><h3>USSD on any phone</h3>
+          <p>Run the local simulator and read the CON / END screens aloud (see the section below).</p>
+          <div class="say">"And this is how a farmer with a feature phone reaches the same service — no app, no data connection."</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Screens -------------------------------------------------------- -->
+<section class="section" id="screens">
+  <div class="wrap">
+    <p class="kicker">What is on the phone</p>
+    <h2>The screens you will touch</h2>
+    <p class="section-lead">Keep this as a memory aid. The live app is the real demonstration.</p>
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="phone-note">
+        <div class="top"><strong>Farm &amp; Crop Health</strong><span class="pill pill-good">7 tabs</span></div>
+        <ul><li>Plots — local list, add plot, harvest &amp; livestock shortcuts</li><li>Overview — map, NDVI, advice, boundary</li><li>Chart · Weather · Growth · Events · Alerts</li></ul>
+      </div>
+      <div class="phone-note">
+        <div class="top"><strong>Dashboard &amp; finance</strong><span class="pill pill-soft">Home</span></div>
+        <ul><li>Role-aware shortcuts and farm summary</li><li>Sales, expenses and balances</li><li>Offline banner and pending-sync counter</li></ul>
+      </div>
+      <div class="phone-note">
+        <div class="top"><strong>Market &amp; orders</strong><span class="pill pill-soft">Trade</span></div>
+        <ul><li>Create and browse produce listings</li><li>Orders and order detail</li><li>Notifications and profile / settings</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USSD ----------------------------------------------------------- -->
+<section class="section" id="ussd">
+  <div class="wrap">
+    <p class="kicker">Beyond smartphones</p>
+    <h2>USSD — the same service on any GSM phone</h2>
+    <p class="section-lead">Dial <code>*123#</code>. USSD needs no data connection and no app, so it
+       reaches the farmers the Android app cannot.</p>
+    <div class="ussd" style="margin-top:22px">
+<b>CON Welcome to AgriConnect</b>
+1. Crop health
+2. Market prices
+3. My plots
+4. Record activity
+5. Alerts
+6. Help
+
+<b>1 → 2</b>   River Plot: NDVI 0.31 (High stress) on 2026-11-12. Check water and weeds.
+<b>2 → 2</b>   Sorghum: P 5.10/kg at Gaborone. Indicative only — confirm with the buyer.
+<b>4 → 1 → 2</b> Recorded: Watering on North Plot. It will sync when the phone has data.
+<b>00</b>      back to the main menu
+    </div>
+    <div class="notice" style="margin-top:18px">
+      <div><strong>Run it locally</strong>
+        <p>The simulator is in <code>Desktop\presentations\USSD\ussd-demo.js</code> and needs no
+           internet. It uses sample data; a live short code needs a gateway account and
+           MSISDN-to-farmer enrolment. Say this plainly if asked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Fallback ------------------------------------------------------- -->
+<section class="section" id="fallback">
+  <div class="wrap">
+    <p class="kicker">Be ready for anything</p>
+    <h2>If the network is down</h2>
+    <div class="warn">
+      The Plots tab and offline writes still work — demonstrate those first. Show a cached reading
+      and say it keeps its original observation date. The USSD simulator is fully local. Never spend
+      assessment time debugging a connection.
+    </div>
+    <div class="hero-actions" style="margin-top:26px">
+      <a class="btn btn-primary btn-lg" href="index.html">Back to the website</a>
+      <a class="btn btn-ghost btn-lg" href="privacy.html">Privacy notice</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Footer --------------------------------------------------------- -->
+<footer class="site-footer" id="footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="index.html">
+        <img src="assets/logo-mark.png" alt="" width="40" height="40" />
+        <span>AgriConnect</span>
+      </a>
+      <p>Farm records, satellite crop health and produce sales for Botswana's farmers.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Product</h3>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#screens">Screens</a>
+      <a href="demo.html">Live demonstration</a>
+      <a href="index.html#install">Install</a>
+      <a href="index.html#api">API</a>
+    </div>
+    <div class="footer-col">
+      <h3>Support</h3>
+      <a href="privacy.html">Privacy notice</a>
+      <a href="mailto:privacy@agriconnect.bw">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h3>Built with</h3>
+      <span>Kotlin &amp; Compose</span>
+      <span>Node.js &amp; PostgreSQL</span>
+      <span>Sentinel-2 imagery</span>
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <p>© <span data-year>2026</span> AgriConnect · MIT licence</p>
+    <p>Version 1.2.1 (build 5) · Android 7.0+</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
