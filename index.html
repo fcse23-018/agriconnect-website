@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AgriConnect — farm records, satellite crop health and markets in one app</title>
+<meta name="description" content="AgriConnect is an offline-first farm management app for Botswana: plot mapping, satellite crop health, finances, livestock, produce listings and orders. Download the Android APK." />
+<meta name="theme-color" content="#174D32" />
+<meta name="color-scheme" content="light" />
+<link rel="icon" href="assets/logo-mark.png" sizes="any" />
+<link rel="apple-touch-icon" href="assets/logo-mark.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="AgriConnect — your whole farm, in one pocket" />
+<meta property="og:description" content="Offline-first farm records, Sentinel-2 crop health, finances and a produce marketplace. Download the Android app." />
+<meta property="og:image" content="assets/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Icon sprite ------------------------------------------------------- -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9.5 12 2l9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9 4.5 3h15L21 9"/><path d="M3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9"/><path d="M3 9h18"/><path d="M9 21v-6h6v6"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 1 0-4h13v4"/><path d="M2 7h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><circle cx="16.5" cy="14" r="1.2"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></symbol>
+  <symbol id="i-cloud-check" viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.98A6 6 0 0 0 6.2 9.5 4 4 0 0 0 7 19Z"/><path d="m9 14.5 2 2 4-4"/></symbol>
+  <symbol id="i-satellite" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="6" stroke-dasharray="2 3"/><circle cx="12" cy="12" r="10" stroke-dasharray="2 5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 11.5 2 2 4-4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M4 20v-3M9 20v-7M14 20v-11M19 20V4"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16.1a6 6 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10.1 10.1 0 0 0 22 12.2C22 6.6 17.5 2 12 2Z"/></symbol>
+</svg>
+
+<!-- Header --------------------------------------------------------- -->
+<header class="site-header" id="top">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="AgriConnect home">
+      <img src="assets/logo-mark.png" alt="" width="38" height="38" />
+      <span>AgriConnect</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-light btn-sm" href="assets/agriConnect-1.1.1.apk" download>
+      <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>
+      Download APK
+    </a>
+  </div>
+</header>
+
+<main>
+<!-- Hero ----------------------------------------------------------- -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="pulse-dot"></span> Built for smallholder farms in Botswana</p>
+      <h1>Every plot.<br />Every <span class="accent">pula</span>.</h1>
+      <p class="lead">
+        Farm records, satellite crop health, finances and produce sales — together in one
+        Android app that keeps working when the network doesn't.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-light btn-lg" href="assets/agriConnect-1.1.1.apk" download>
+          <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>
+          <span class="btn-stack">
+            <strong>Download for Android</strong>
+            <small>v1.1.1 · <span data-apk-size>24 MB</span> · free</small>
+          </span>
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#screens">See the screens</a>
+      </div>
+      <ul class="hero-meta">
+        <li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Android 7.0+</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> Works offline</li>
+        <li><svg class="i" aria-hidden="true"><use href="#i-check" /></svg> No ads, no tracking</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="phone phone-hero">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="sb"><span>9:41</span><span class="sb-icons">
+              <svg class="i"><use href="#i-signal" /></svg>
+              <svg class="i"><use href="#i-wifi" /></svg>
+              <span class="battery"></span>
+            </span></div>
+            <div class="appbar">
+              <img src="assets/logo-mark.png" alt="" class="appbar-logo" />
+              <span class="appbar-title">AgriConnect</span>
+              <span class="appbar-action"><svg class="i"><use href="#i-bell" /></svg><i class="dot"></i></span>
+            </div>
+            <div class="screen-body">
+              <div class="hello">
+                <div>
+                  <p class="hello-hi">Dumela, Naledi</p>
+                  <p class="hello-sub">Mogoditshane Farm · 12.4 ha</p>
+                </div>
+                <span class="avatar">N</span>
+              </div>
+
+              <div class="tiles">
+                <div class="tile">
+                  <span class="tile-label">Net this month</span>
+                  <span class="tile-value">P 8,240</span>
+                  <span class="tile-delta up">↑ 12%</span>
+                </div>
+                <div class="tile">
+                  <span class="tile-label">Plots</span>
+                  <span class="tile-value">4</span>
+                  <span class="tile-delta">3 healthy</span>
+                </div>
+              </div>
+
+              <div class="card ndvi">
+                <div class="card-head">
+                  <span class="card-title">Vegetation health</span>
+                  <span class="pill pill-good">Healthy</span>
+                </div>
+                <div class="ndvi-row">
+                  <span class="ndvi-value">0.62</span>
+                  <div class="ndvi-meta">
+                    <span>Mean NDVI · Plot A</span>
+                    <span class="muted">Sentinel-2 · 3 days ago</span>
+                  </div>
+                </div>
+                <div class="bars">
+                  <i style="--h:34%"></i><i style="--h:42%"></i><i style="--h:38%"></i>
+                  <i style="--h:55%"></i><i style="--h:63%"></i><i style="--h:58%"></i>
+                  <i style="--h:71%"></i><i style="--h:66%"></i><i style="--h:78%"></i>
+                  <i style="--h:74%"></i><i style="--h:88%"></i><i style="--h:82%"></i>
+                </div>
+              </div>
+
+              <div class="card syncrow">
+                <svg class="i good"><use href="#i-cloud-check" /></svg>
+                <div><strong>All changes synced</strong><span>Last sync 2 min ago</span></div>
+              </div>
+            </div>
+            <nav class="tabbar">
+              <span class="tab active"><svg class="i"><use href="#i-home" /></svg>Home</span>
+              <span class="tab"><svg class="i"><use href="#i-leaf" /></svg>Farms</span>
+              <span class="tab"><svg class="i"><use href="#i-store" /></svg>Market</span>
+              <span class="tab"><svg class="i"><use href="#i-user" /></svg>Profile</span>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-card float-a">
+        <span class="fc-icon"><svg class="i"><use href="#i-satellite" /></svg></span>
+        <div><strong>NDVI 0.62</strong><span>Healthy vegetation</span></div>
+      </div>
+      <div class="float-card float-b">
+        <span class="fc-icon brown"><svg class="i"><use href="#i-store" /></svg></span>
+        <div><strong>2 new orders</strong><span>P 2,300 · white maize</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="trustbar">
+      <li><svg class="i" aria-hidden="true"><use href="#i-satellite" /></svg><span>Sentinel-2 crop health</span></li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-cloud-check" /></svg><span>Offline-first sync</span></li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg><span>Role-based access</span></li>
+      <li><svg class="i" aria-hidden="true"><use href="#i-store" /></svg><span>Pula marketplace</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Features ------------------------------------------------------- -->
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">What it does</p>
+      <h2>One app for the whole season</h2>
+      <p class="section-lead">
+        From mapping a plot to banking the sale — AgriConnect connects the records you already keep,
+        and does the arithmetic you'd rather not.
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="feature reveal">
+        <span class="f-icon"><svg class="i"><use href="#i-satellite" /></svg></span>
+        <h3>Satellite crop health</h3>
+        <p>Draw your plot once and get NDVI from Sentinel-2 imagery, with stress alerts before yield is lost.</p>
+        <ul class="f-list"><li>Vegetation index history</li><li>Stress alerts per plot</li></ul>
+      </article>
+
+      <article class="feature reveal">
+        <span class="f-icon"><svg class="i"><use href="#i-cloud-check" /></svg></span>
+        <h3>Works without signal</h3>
+        <p>Records are saved on the phone the moment you enter them, then sync when you're back in coverage.</p>
+        <ul class="f-list"><li>Queue with retry</li><li>Conflict handling</li></ul>
+      </article>
+
+      <article class="feature reveal">
+        <span class="f-icon"><svg class="i"><use href="#i-pin" /></svg></span>
+        <h3>Farms &amp; plots</h3>
+        <p>Map boundaries on a satellite base map, track size, soil and crops, and keep the whole holding in view.</p>
+        <ul class="f-list"><li>GeoJSON boundaries</li><li>Hectares per plot</li></ul>
+      </article>
+
+      <article class="feature reveal">
+        <span class="f-icon"><svg class="i"><use href="#i-wallet" /></svg></span>
+        <h3>Finances that add up</h3>
+        <p>Sales, expenses and livestock in one ledger, with monthly net and a sales-versus-expenses chart.</p>
+        <ul class="f-list"><li>Pula amounts, tabular figures</li><li>Net profit per month</li></ul>
+      </article>
+
+      <article class="feature reveal">
+        <span class="f-icon"><svg class="i"><use href="#i-store" /></svg></span>
+        <h3>Marketplace &amp; orders</h3>
+        <p>List produce with photos and a price, take orders as a buyer, and track every order's status.</p>
+        <ul class="f-list"><li>Listings with images</li><li>Order status tracking</li></ul>
+      </article>
+
+      <article class="feature reveal">
+        <span class="f-icon"><svg class="i"><use href="#i-shield" /></svg></span>
+        <h3>Built for teams</h3>
+        <p>Owners, farm employees and buyers each see only what their role allows — enforced in the app and the API.</p>
+        <ul class="f-list"><li>Farmer · Employee · Buyer</li><li>Audited access</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Screens -------------------------------------------------------- -->
+<section class="section section-tint" id="screens">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">A look inside</p>
+      <h2>Designed for a hand in the field</h2>
+      <p class="section-lead">
+        Large targets, short screens, and the numbers that matter first. Recreated here from the
+        app's own design system.
+      </p>
+    </div>
+
+    <div class="screens-row">
+      <!-- Satellite -->
+      <figure class="screen-item reveal">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="sb"><span>9:41</span><span class="sb-icons">
+                <svg class="i"><use href="#i-signal" /></svg><svg class="i"><use href="#i-wifi" /></svg><span class="battery"></span>
+              </span></div>
+              <div class="appbar">
+                <span class="appbar-action"><svg class="i"><use href="#i-back" /></svg></span>
+                <span class="appbar-title">Satellite health</span>
+                <span class="appbar-action"></span>
+              </div>
+              <div class="screen-body">
+                <div class="chips">
+                  <span class="chip active">Plot A</span><span class="chip">Sorghum</span><span class="chip">1.8 ha</span>
+                </div>
+                <div class="map">
+                  <svg viewBox="0 0 240 150" role="presentation">
+                    <defs>
+                      <linearGradient id="fieldG" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#3F7852" /><stop offset="1" stop-color="#2E7D4F" />
+                      </linearGradient>
+                    </defs>
+                    <rect width="240" height="150" fill="#EAEFE6" />
+                    <g stroke="#D6DFD2" stroke-width="1">
+                      <path d="M0 30h240M0 60h240M0 90h240M0 120h240M30 0v150M60 0v150M90 0v150M120 0v150M150 0v150M180 0v150M210 0v150" />
+                    </g>
+                    <path d="M34 34h48l16 22-8 34-34 12-26-20z" fill="url(#fieldG)" opacity=".92" />
+                    <path d="M104 40h52l18 26-14 36-40 6-24-26z" fill="#6E9A5F" opacity=".85" />
+                    <path d="M158 30l40 8 8 30-18 20-24-10-12-26z" fill="#C9A45A" opacity=".8" />
+                    <path d="M72 96h44l10 26-30 16-30-14z" fill="#B07A24" opacity=".65" />
+                    <circle cx="112" cy="74" r="5" fill="#103B27" stroke="#F8F8F3" stroke-width="2.5" />
+                  </svg>
+                  <span class="map-tag">Sentinel-2 · 3 days ago</span>
+                </div>
+                <div class="legend">
+                  <span><i class="lg good"></i>Healthy</span>
+                  <span><i class="lg warn"></i>Watch</span>
+                  <span><i class="lg bad"></i>Stress</span>
+                </div>
+                <div class="card alert">
+                  <svg class="i"><use href="#i-satellite" /></svg>
+                  <div><strong>Moderate stress · 0.8 ha</strong><span>Scout the north block this week</span></div>
+                </div>
+                <div class="card spark">
+                  <div class="card-head"><span class="card-title">NDVI history</span><span class="muted">12 weeks</span></div>
+                  <svg viewBox="0 0 200 54" class="sparkline" role="presentation">
+                    <polyline points="4,42 26,38 48,40 70,30 92,33 114,24 136,27 158,16 180,20 196,12"
+                      fill="none" stroke="#2E7D4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="196" cy="12" r="3.5" fill="#2E7D4F" />
+                  </svg>
+                </div>
+              </div>
+              <nav class="tabbar">
+                <span class="tab"><svg class="i"><use href="#i-home" /></svg>Home</span>
+                <span class="tab active"><svg class="i"><use href="#i-leaf" /></svg>Farms</span>
+                <span class="tab"><svg class="i"><use href="#i-store" /></svg>Market</span>
+                <span class="tab"><svg class="i"><use href="#i-user" /></svg>Profile</span>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <figcaption><h3>Plot-level crop health</h3><p>See exactly which corner of the field is under stress.</p></figcaption>
+      </figure>
+
+      <!-- Marketplace -->
+      <figure class="screen-item reveal">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="sb"><span>9:41</span><span class="sb-icons">
+                <svg class="i"><use href="#i-signal" /></svg><svg class="i"><use href="#i-wifi" /></svg><span class="battery"></span>
+              </span></div>
+              <div class="appbar">
+                <span class="appbar-title">Marketplace</span>
+                <span class="appbar-action"><svg class="i"><use href="#i-search" /></svg></span>
+              </div>
+              <div class="screen-body">
+                <div class="chips">
+                  <span class="chip active">All</span><span class="chip">Maize</span><span class="chip">Beans</span><span class="chip">Livestock</span>
+                </div>
+
+                <div class="listing">
+                  <div class="thumb thumb-maize"><svg class="i"><use href="#i-leaf" /></svg></div>
+                  <div class="listing-body">
+                    <strong>White maize</strong>
+                    <span class="muted">500 kg · Naledi Farms</span>
+                    <div class="listing-foot"><span class="price">P 2,300</span><span class="pill pill-good">In stock</span></div>
+                  </div>
+                </div>
+
+                <div class="listing">
+                  <div class="thumb thumb-cattle"><svg class="i"><use href="#i-pin" /></svg></div>
+                  <div class="listing-body">
+                    <strong>Bonsmara heifer</strong>
+                    <span class="muted">18 months · 320 kg</span>
+                    <div class="listing-foot"><span class="price">P 9,500</span><span class="pill pill-soft">2 left</span></div>
+                  </div>
+                </div>
+
+                <div class="listing">
+                  <div class="thumb thumb-beans"><svg class="i"><use href="#i-leaf" /></svg></div>
+                  <div class="listing-body">
+                    <strong>Dry beans</strong>
+                    <span class="muted">200 kg · Kgale Co-op</span>
+                    <div class="listing-foot"><span class="price">P 1,150</span><span class="pill pill-good">In stock</span></div>
+                  </div>
+                </div>
+
+                <div class="card syncrow tight">
+                  <svg class="i good"><use href="#i-cloud-check" /></svg>
+                  <div><strong>Order updates sent</strong><span>Buyer notified by SMS</span></div>
+                </div>
+              </div>
+              <nav class="tabbar">
+                <span class="tab"><svg class="i"><use href="#i-home" /></svg>Home</span>
+                <span class="tab"><svg class="i"><use href="#i-leaf" /></svg>Farms</span>
+                <span class="tab active"><svg class="i"><use href="#i-store" /></svg>Market</span>
+                <span class="tab"><svg class="i"><use href="#i-user" /></svg>Profile</span>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <figcaption><h3>Marketplace &amp; orders</h3><p>List what you've harvested and sell it without leaving the farm.</p></figcaption>
+      </figure>
+
+      <!-- Finance -->
+      <figure class="screen-item reveal">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="sb"><span>9:41</span><span class="sb-icons">
+                <svg class="i"><use href="#i-signal" /></svg><svg class="i"><use href="#i-wifi" /></svg><span class="battery"></span>
+              </span></div>
+              <div class="appbar">
+                <span class="appbar-title">Finance</span>
+                <span class="appbar-action"><svg class="i"><use href="#i-chart" /></svg></span>
+              </div>
+              <div class="screen-body">
+                <div class="segmented"><span class="seg active">This month</span><span class="seg">Season</span></div>
+                <div class="big-stat">
+                  <span class="muted">Net profit</span>
+                  <span class="big-value">P 8,240</span>
+                  <span class="pill pill-good">↑ 12% vs last month</span>
+                </div>
+                <div class="card chartcard">
+                  <div class="chart-head"><span class="card-title">Sales vs expenses</span></div>
+                  <div class="chart">
+                    <div class="col"><i class="in" style="--h:62%"></i><i class="out" style="--h:22%"></i></div>
+                    <div class="col"><i class="in" style="--h:48%"></i><i class="out" style="--h:30%"></i></div>
+                    <div class="col"><i class="in" style="--h:74%"></i><i class="out" style="--h:26%"></i></div>
+                    <div class="col"><i class="in" style="--h:58%"></i><i class="out" style="--h:34%"></i></div>
+                    <div class="col"><i class="in" style="--h:88%"></i><i class="out" style="--h:28%"></i></div>
+                    <div class="col"><i class="in" style="--h:70%"></i><i class="out" style="--h:20%"></i></div>
+                  </div>
+                  <div class="chart-legend"><span><i class="lg good"></i>Sales</span><span><i class="lg brown"></i>Expenses</span></div>
+                </div>
+                <div class="ledger">
+                  <div class="ledger-row"><span><i class="lg good"></i>Sales</span><strong>P 12,450</strong></div>
+                  <div class="ledger-row"><span><i class="lg brown"></i>Expenses</span><strong>− P 4,210</strong></div>
+                  <div class="ledger-row total"><span>Net</span><strong>P 8,240</strong></div>
+                </div>
+              </div>
+              <nav class="tabbar">
+                <span class="tab"><svg class="i"><use href="#i-home" /></svg>Home</span>
+                <span class="tab"><svg class="i"><use href="#i-leaf" /></svg>Farms</span>
+                <span class="tab active"><svg class="i"><use href="#i-wallet" /></svg>Finance</span>
+                <span class="tab"><svg class="i"><use href="#i-user" /></svg>Profile</span>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <figcaption><h3>Money, in plain Pula</h3><p>Every sale and expense, with the monthly net always one tap away.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- Under the hood ------------------------------------------------ -->
+<section class="section stats-section">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat"><span class="stat-value">539</span><span class="stat-label">backend tests passing</span></div>
+      <div class="stat"><span class="stat-value">164</span><span class="stat-label">Android unit tests</span></div>
+      <div class="stat"><span class="stat-value">94</span><span class="stat-label">documented API operations</span></div>
+      <div class="stat"><span class="stat-value">3</span><span class="stat-label">roles: farmer, employee, buyer</span></div>
+    </div>
+    <p class="stats-note reveal">Kotlin + Jetpack Compose on the phone · Node.js and PostgreSQL behind it · Sentinel-2 imagery for crop health.</p>
+  </div>
+</section>
+
+<!-- Install ------------------------------------------------------- -->
+<section class="section" id="install">
+  <div class="wrap install-grid">
+    <div class="install-copy reveal">
+      <p class="kicker">Get it on your phone</p>
+      <h2>Install in under a minute</h2>
+      <p class="section-lead">
+        AgriConnect is distributed directly as an APK, so you can run the newest build without
+        waiting for an app store review.
+      </p>
+      <a class="btn btn-primary btn-lg" href="assets/agriConnect-1.1.1.apk" download>
+        <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>
+        <span class="btn-stack">
+          <strong>Download AgriConnect</strong>
+          <small>Version 1.1.1 · <span data-apk-size>24 MB</span></small>
+        </span>
+      </a>
+      <p class="hash">
+        SHA-256 <code data-apk-hash>8b059c0f632cc22ed77a3d94082e9dd6c66070e2d8bc9b6fab55dd2bc5242a6c</code>
+      </p>
+    </div>
+
+    <ol class="steps reveal">
+      <li>
+        <span class="step-num">1</span>
+        <div>
+          <h3>Download the file</h3>
+          <p>Tap the download button. The APK lands in your Downloads folder or notification shade.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <div>
+          <h3>Open it</h3>
+          <p>Tap the downloaded file. Android will ask permission to install from this source.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <div>
+          <h3>Allow this source</h3>
+          <p>Settings → Apps → Special access → Install unknown apps → allow your browser or Files app.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">4</span>
+        <div>
+          <h3>Install and sign in</h3>
+          <p>Open AgriConnect and register with your phone number. Records work offline from the first screen.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="wrap">
+    <div class="notice reveal">
+      <svg class="i" aria-hidden="true"><use href="#i-shield" /></svg>
+      <div>
+        <strong>About the Android warning</strong>
+        <p>
+          This is a debug-signed test build, not a Play Store release, so Android may say
+          “unsafe app blocked”. Tap <em>More details → Install anyway</em>. The checksum above lets you
+          confirm the file you downloaded is the one published here.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ ------------------------------------------------------------ -->
+<section class="section section-tint" id="faq">
+  <div class="wrap faq-wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Questions</p>
+      <h2>Good to know</h2>
+    </div>
+
+    <div class="faq reveal">
+      <details>
+        <summary>Is AgriConnect free? <svg class="i" aria-hidden="true"><use href="#i-chevron" /></svg></summary>
+        <p>Yes. There are no ads, no subscriptions and no in-app purchases in this build. It is a pilot release.</p>
+      </details>
+      <details>
+        <summary>Why does Android warn me about the file? <svg class="i" aria-hidden="true"><use href="#i-chevron" /></svg></summary>
+        <p>
+          Because the APK is installed directly rather than through the Play Store, and this build is
+          debug-signed for testing. Android flags every sideloaded app once. The install steps above
+          walk you through it.
+        </p>
+      </details>
+      <details>
+        <summary>Does it really work offline? <svg class="i" aria-hidden="true"><use href="#i-chevron" /></svg></summary>
+        <p>
+          Yes. Harvests, expenses, livestock counts, listings and orders are saved on the phone first
+          and queued for sync. They upload automatically when you have a connection. Satellite
+          imagery and the marketplace do need a network.
+        </p>
+      </details>
+      <details>
+        <summary>Which phones are supported? <svg class="i" aria-hidden="true"><use href="#i-chevron" /></svg></summary>
+        <p>Android 7.0 (API 24) and newer. The app is built for phones, not tablets, and there is no iPhone version yet.</p>
+      </details>
+      <details>
+        <summary>What happens to my data? <svg class="i" aria-hidden="true"><use href="#i-chevron" /></svg></summary>
+        <p>
+          Your records belong to you. Read the plain-language summary in our
+          <a href="privacy.html">privacy notice</a> — or the full policy under
+          <em>Profile → Privacy &amp; data</em> in the app.
+        </p>
+      </details>
+      <details>
+        <summary>Can I run my own server? <svg class="i" aria-hidden="true"><use href="#i-chevron" /></svg></summary>
+        <p>
+          The project is MIT-licensed. The API, database migrations and Android source are all in the
+          repository, and a debug build can point at any server from <em>Settings → Server</em>.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Closing CTA --------------------------------------------------- -->
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>Take AgriConnect to the field.</h2>
+      <p>Free for farmers, farm employees and buyers. No account fees, no adverts.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-light btn-lg" href="assets/agriConnect-1.1.1.apk" download>
+        <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>
+        <span class="btn-stack">
+          <strong>Download APK</strong>
+          <small>v1.1.1 · <span data-apk-size>24 MB</span></small>
+        </span>
+      </a>
+      <button class="btn btn-ghost btn-lg" type="button" data-copy-link>
+        <svg class="i" aria-hidden="true"><use href="#i-copy" /></svg>
+        Copy page link
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer --------------------------------------------------------- -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <img src="assets/logo-mark.png" alt="" width="40" height="40" />
+        <span>AgriConnect</span>
+      </a>
+      <p>Farm records, satellite crop health and produce sales for Botswana's farmers.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Product</h3>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Support</h3>
+      <a href="privacy.html">Privacy notice</a>
+      <a href="mailto:privacy@agriconnect.bw">Contact</a>
+      <a href="https://github.com/" rel="noopener">Source code</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Built with</h3>
+      <span>Kotlin &amp; Compose</span>
+      <span>Node.js &amp; PostgreSQL</span>
+      <span>Sentinel-2 imagery</span>
+    </div>
+  </div>
+
+  <div class="wrap footer-base">
+    <p>© <span data-year>2026</span> AgriConnect · MIT licence</p>
+    <p>Version 1.1.1 (build 3) · Android 7.0+</p>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<script src="script.js" defer></script>
+</body>
+</html>

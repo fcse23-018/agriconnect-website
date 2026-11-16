@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy notice — AgriConnect</title>
+<meta name="description" content="What AgriConnect collects, why, who it is shared with, and how to exercise your rights under the Botswana Data Protection Act." />
+<meta name="theme-color" content="#174D32" />
+<link rel="icon" href="assets/logo-mark.png" sizes="any" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="AgriConnect home">
+      <img src="assets/logo-mark.png" alt="" width="38" height="38" />
+      <span>AgriConnect</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#screens">Screens</a>
+      <a href="index.html#install">Install</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-light btn-sm" href="assets/agriConnect-1.1.1.apk" download>
+      <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>
+      Download APK
+    </a>
+  </div>
+</header>
+
+<main class="legal-wrap">
+  <div class="wrap legal">
+    <p class="kicker">Privacy</p>
+    <h1>Privacy notice</h1>
+    <p class="legal-meta">Last updated 16 November 2026 · Applies to the AgriConnect Android app and API</p>
+
+    <p class="legal-intro">
+      This is the plain-language summary of how AgriConnect handles your data. The full policy —
+      including the legal wording under the Botswana Data Protection Act, 2024 — is in the app under
+      <strong>Profile → Privacy &amp; data</strong>.
+    </p>
+
+    <h2>What we collect, and why</h2>
+    <ul>
+      <li><strong>Name and phone number</strong> — to create your account, sign you in and send verification codes.</li>
+      <li><strong>Email address</strong> — optional, for sign-in and recovery.</li>
+      <li><strong>Password</strong> — stored only as a one-way bcrypt hash, never in plain text.</li>
+      <li><strong>Farm data</strong> — plot boundaries, crops, harvests, livestock, sales, expenses, listings and orders, so the app can keep your records and summaries.</li>
+      <li><strong>Preferences and avatar</strong> — optional, to personalise the app.</li>
+      <li><strong>Connection state</strong> — so queued records sync when you are back online.</li>
+    </ul>
+
+    <h2>What we never collect</h2>
+    <p>
+      No biometric data, no facial images, no camera or motion-sensor data, no advertising identifiers
+      and no access to your contacts. We do not sell your data and we do not use it for advertising.
+    </p>
+
+    <h2>Offline-first</h2>
+    <p>
+      Records are written to your phone first and uploaded when a connection is available. If you sign
+      out or delete your account, anything still waiting to sync is uploaded first so no work is lost.
+    </p>
+
+    <h2>Who we share data with</h2>
+    <ul>
+      <li><strong>Google Earth Engine</strong> — farm plot geometry only (no name or phone number), to fetch Sentinel-2 imagery for crop health.</li>
+      <li><strong>Messaging providers</strong> — your phone number or email, only to deliver verification and recovery codes.</li>
+      <li><strong>Our hosting provider</strong> — to run the service, with traffic encrypted in transit.</li>
+    </ul>
+    <p>We may also disclose data where the law requires it.</p>
+
+    <h2>How long we keep it</h2>
+    <ul>
+      <li>Account details, plots, harvests, livestock and satellite history — until you delete your account, then removed or anonymised.</li>
+      <li>Sales, expenses, listings and orders — de-identified and kept for 7 years for tax and financial record-keeping.</li>
+      <li>Security audit logs — 24 months. Notifications — 12 months. Backups — 30 days rolling.</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>Under the Botswana Data Protection Act you can:</p>
+    <ul>
+      <li><strong>Access</strong> your data — in the app, <em>Profile → Privacy &amp; data → Export my data</em>.</li>
+      <li><strong>Correct</strong> it — edit any record directly in the app.</li>
+      <li><strong>Delete</strong> it — <em>Profile → Privacy &amp; data → Delete account</em>. This signs you out everywhere and removes your farm records and satellite history.</li>
+      <li><strong>Object, restrict, or complain</strong> — contact us, or the Information and Data Protection Commission.</li>
+    </ul>
+
+    <h2>Security</h2>
+    <p>
+      Passwords are hashed with bcrypt. Sign-in tokens are stored as irreversible hashes on the server
+      and in encrypted storage on your device. All traffic uses HTTPS, and access is role-based: farm
+      employees cannot see financial records, and buyers cannot see farm operations.
+    </p>
+
+    <h2>Children</h2>
+    <p>AgriConnect is built for adults managing farms and buying produce. It is not directed at children.</p>
+
+    <h2>Contact</h2>
+    <p>
+      Privacy questions: <a href="mailto:privacy@agriconnect.bw">privacy@agriconnect.bw</a>. We will tell
+      you in the app before any material change to this notice takes effect.
+    </p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-base" style="margin-top:0;border-top:0;padding-top:0">
+    <p>© <span data-year>2026</span> AgriConnect · MIT licence</p>
+    <p><a href="index.html">Back to the download page</a></p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
