@@ -28,6 +28,9 @@ agriconnect-website/
 │   ├── logo-mark.png                # 192 × 192 app mark / favicon
 │   ├── auth-background.jpg          # app auth screen background (hero)
 │   ├── og-image.jpg                 # 1200 × 630 social preview card
+│   ├── screen-crop-health.png       # demo page: crop health screen (still image)
+│   ├── screen-market.png            # demo page: marketplace screen (still image)
+│   ├── screen-finance.png           # demo page: finance screen (still image)
 │   └── agriConnect-1.2.1.apk        # the build people download
 └── README.md
 ```

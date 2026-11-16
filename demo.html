@@ -26,10 +26,10 @@
   .demo-link strong { display:block; font-size:15px; color:var(--primary); }
   .demo-link code { font-size:11.5px; color:var(--muted); word-break:break-all; }
   .demo-link span { display:block; margin-top:6px; color:var(--muted); font-size:13px; line-height:1.5; }
-  .phone-note { border:1px solid var(--border); border-radius:18px; background:#fff; padding:16px 18px; }
-  .phone-note .top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:10px; }
-  .phone-note .top strong { font-size:14px; }
-  .phone-note ul { margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.6; }
+  .screen-shot { margin:0; padding:14px 14px 18px; border:1px solid var(--border); border-radius:18px; background:#fff; text-align:center; }
+  .screen-shot img { display:block; width:100%; max-width:250px; height:auto; margin:0 auto 10px; }
+  .screen-shot h3 { font-size:15px; }
+  .screen-shot p { margin-top:4px; color:var(--muted); font-size:13px; line-height:1.55; }
   .ussd { background:#102b1c; color:#d8f3dd; border-radius:18px; padding:20px 22px; font-family:ui-monospace,Consolas,monospace; font-size:13px; line-height:1.65; overflow-x:auto; }
   .ussd b { color:#9fe8b4; }
   .say { border-left:3px solid var(--primary); padding:2px 0 2px 14px; margin-top:8px; color:var(--muted); font-size:13.5px; font-style:italic; line-height:1.6; }
@@ -152,20 +152,23 @@
   <div class="wrap">
     <p class="kicker">What is on the phone</p>
     <h2>The screens you will touch</h2>
-    <p class="section-lead">Keep this as a memory aid. The live app is the real demonstration.</p>
+    <p class="section-lead">Still images, so they always load — no video needed. The live app on the phone remains the real demonstration.</p>
     <div class="grid grid-3" style="margin-top:22px">
-      <div class="phone-note">
-        <div class="top"><strong>Farm &amp; Crop Health</strong><span class="pill pill-good">7 tabs</span></div>
-        <ul><li>Plots — local list, add plot, harvest &amp; livestock shortcuts</li><li>Overview — map, NDVI, advice, boundary</li><li>Chart · Weather · Growth · Events · Alerts</li></ul>
-      </div>
-      <div class="phone-note">
-        <div class="top"><strong>Dashboard &amp; finance</strong><span class="pill pill-soft">Home</span></div>
-        <ul><li>Role-aware shortcuts and farm summary</li><li>Sales, expenses and balances</li><li>Offline banner and pending-sync counter</li></ul>
-      </div>
-      <div class="phone-note">
-        <div class="top"><strong>Market &amp; orders</strong><span class="pill pill-soft">Trade</span></div>
-        <ul><li>Create and browse produce listings</li><li>Orders and order detail</li><li>Notifications and profile / settings</li></ul>
-      </div>
+      <figure class="screen-shot">
+        <img src="assets/screen-crop-health.png" alt="AgriConnect crop health screen showing a plot map, stress alert and NDVI history chart" />
+        <h3>Farm &amp; Crop Health</h3>
+        <p>Plot map, dated Sentinel-2 reading, stress advice and NDVI history — the screen opened in the walkthrough.</p>
+      </figure>
+      <figure class="screen-shot">
+        <img src="assets/screen-market.png" alt="AgriConnect marketplace screen with produce listings" />
+        <h3>Market</h3>
+        <p>Browse and create produce listings, then track orders. Buyers use the same app with a role-aware home.</p>
+      </figure>
+      <figure class="screen-shot">
+        <img src="assets/screen-finance.png" alt="AgriConnect finance screen showing net profit and a sales chart" />
+        <h3>Finance</h3>
+        <p>Net profit, sales versus expenses and farm records — kept offline first and synced when data returns.</p>
+      </figure>
     </div>
   </div>
 </section>
