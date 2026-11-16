@@ -108,4 +108,55 @@
       }
     });
   });
+
+  /* --- Live release status from the Render API ---------------------
+     The site works with or without this: if the API cannot be reached
+     (offline, CORS not configured yet), every button keeps the bundled
+     APK that is already in assets/. */
+  var RENDER_VERSION_URL = 'https://agriconnect-api-f55x.onrender.com/api/v1/app/version';
+  var statusBox = document.querySelector('[data-release-status]');
+  if (statusBox && window.fetch) {
+    var title = statusBox.querySelector('[data-release-title]');
+    var detail = statusBox.querySelector('[data-release-detail]');
+
+    function useBundled(message) {
+      if (title) title.textContent = 'Using the bundled APK';
+      if (detail) detail.textContent = message;
+    }
+
+    var controller = window.AbortController ? new AbortController() : null;
+    var timeout = window.setTimeout(function () { if (controller) controller.abort(); }, 6000);
+
+    fetch(RENDER_VERSION_URL, controller ? { signal: controller.signal } : {})
+      .then(function (res) { if (!res.ok) throw new Error('http'); return res.json(); })
+      .then(function (release) {
+        window.clearTimeout(timeout);
+        if (!release || !release.available || !release.downloadUrl) {
+          useBundled('No release published on Render yet — the buttons use the bundled v1.1.1 APK.');
+          return;
+        }
+
+        statusBox.classList.add('is-live');
+        if (title) title.textContent = 'Latest release: v' + (release.latestVersionName || '?');
+        var bits = [];
+        if (Array.isArray(release.releaseNotes) && release.releaseNotes.length) {
+          bits.push(release.releaseNotes.join(' · '));
+        } else if (release.releasedAt) {
+          bits.push('Published ' + release.releasedAt);
+        } else {
+          bits.push('Download links now follow this release.');
+        }
+        if (release.sizeBytes) bits.push(formatSize(Number(release.sizeBytes)));
+        if (detail) detail.textContent = bits.join(' · ');
+
+        // Keep the website and the app on the same release.
+        Array.prototype.forEach.call(document.querySelectorAll('a[download][href$=".apk"]'), function (a) {
+          a.setAttribute('href', release.downloadUrl);
+        });
+      })
+      .catch(function () {
+        window.clearTimeout(timeout);
+        useBundled('The buttons use the bundled v1.1.1 APK hosted on this site.');
+      });
+  }
 })();

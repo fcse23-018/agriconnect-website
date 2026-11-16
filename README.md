@@ -74,7 +74,46 @@ gh api --method POST /repos/{owner}/agriconnect-website/pages \
 The APK is about 24 MB, comfortably under GitHub's 100 MB per-file limit. `.nojekyll` is included
 so nothing is filtered by Jekyll.
 
-## Publishing a new APK
+## The Render API
+
+The app's backend is a Node.js/Express service running on Render:
+
+```text
+Base URL:  https://agriconnect-api-f55x.onrender.com/api/v1/
+Docs:      https://agriconnect-api-f55x.onrender.com/api-docs
+Health:    https://agriconnect-api-f55x.onrender.com/health
+```
+
+Public, no sign-in needed:
+
+```bash
+curl https://agriconnect-api-f55x.onrender.com/api/v1/version
+curl https://agriconnect-api-f55x.onrender.com/api/v1/app/version
+```
+
+Everything else uses a bearer token from `POST /auth/login`:
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+  https://agriconnect-api-f55x.onrender.com/api/v1/farm/plots
+```
+
+The landing page has a **“The API behind the app”** section with these links and a live release
+status panel. That panel calls `/app/version` from the browser, so for it to work you must add the
+GitHub Pages origin to Render's `CORS_ORIGINS` environment variable (exact origin, no trailing
+slash, no wildcard):
+
+```text
+CORS_ORIGINS=https://<your-user>.github.io
+```
+
+If that is not set, the panel simply falls back to “Using the bundled APK” — the download buttons
+and the APK itself keep working either way.
+
+## Publishing a new APK (website + Render)
+
+The APK is hosted here on GitHub Pages; Render publishes the *version manifest* that tells the
+app where to download it. Update both together:
 
 1. Build the app (from the app repository):
 
@@ -83,7 +122,7 @@ so nothing is filtered by Jekyll.
    ./gradlew :app:assembleDebug
    ```
 
-2. Copy the APK over the old one in `assets/` and give it the version in its name:
+2. Copy the APK into `assets/` and give it the version in its name:
 
    ```bash
    cp android/app/build/outputs/apk/debug/app-debug.apk \
@@ -92,7 +131,41 @@ so nothing is filtered by Jekyll.
 
 3. Update the version, file size and SHA-256 in `index.html` (search for `1.1.1`, `data-apk-size`
    and `data-apk-hash`), plus the `href` on every download link.
-4. Commit and push. GitHub Pages redeploys automatically.
+4. Commit and push **this** repository. GitHub Pages redeploys automatically; the APK is now at
+   `https://<your-user>.github.io/agriconnect-website/assets/agriConnect-<version>.apk`.
+5. In the **app** repository, edit `backend/version-manifest.json`:
+
+   ```json
+   {
+     "published": true,
+     "latestVersionName": "1.1.1",
+     "latestVersionCode": 3,
+     "minSupportedVersionCode": 1,
+     "downloadUrl": "https://<your-user>.github.io/agriconnect-website/assets/agriConnect-1.1.1.apk",
+     "packageName": "bw.agriconnect",
+     "releaseNotes": ["What changed in this build"],
+     "releasedAt": "2026-11-17",
+     "checksumSha256": "<sha-256 of the APK>",
+     "sizeBytes": 25198223,
+     "requiredMessage": "Please update AgriConnect to continue using satellite monitoring.",
+     "optionalMessage": "A newer version of AgriConnect is available."
+   }
+   ```
+
+   `downloadUrl` **must be HTTPS** and must be the live GitHub Pages URL from step 4. Leaving
+   `published: false` or `downloadUrl` empty makes `/app/version` report `available: false`, and
+   no device is prompted to update. Uploading an APK never updates the manifest automatically.
+6. Commit and push the app repository. Render auto-deploys on push to `main`.
+7. Verify the whole loop:
+
+   ```bash
+   curl https://agriconnect-api-f55x.onrender.com/api/v1/app/version
+   curl -I https://<your-user>.github.io/agriconnect-website/assets/agriConnect-<version>.apk
+   ```
+
+   The first must show `"available": true` with your `downloadUrl`; the second must return `200`.
+8. Open this page — the live status panel should show the new version and the buttons should point
+   at the same URL the app uses.
 
 Get the checksum with:
 

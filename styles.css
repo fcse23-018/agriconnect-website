@@ -856,6 +856,85 @@ a { color: var(--forest); }
 .notice p { margin-top: 4px; font-size: 13px; line-height: 1.65; }
 .notice em { font-style: normal; font-weight: 600; }
 
+/* Render API section */
+.f-icon.brown { background: var(--brown-container); color: var(--dark-brown); }
+.api-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: start; }
+.api-card {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
+.api-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.api-card .f-icon { margin-bottom: 0; }
+.api-card h3 { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+.api-card h4 { margin: 22px 0 10px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.api-card p { margin-top: 9px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.api-card code {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--warm);
+  color: #2F5B3E;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  word-break: break-word;
+}
+.api-url {
+  display: block;
+  margin-top: 9px;
+  padding: 11px 13px !important;
+  border: 1px solid #CDE0D1 !important;
+  background: var(--green-container) !important;
+  font-size: 12.5px !important;
+  line-height: 1.5;
+}
+.api-endpoints { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.api-endpoints li { display: flex; flex-direction: column; gap: 2px; padding: 9px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--warm); }
+.api-endpoints a { text-decoration: none; width: fit-content; }
+.api-endpoints a:hover code { background: var(--green-container); }
+.api-endpoints span { color: var(--muted); font-size: 12px; }
+.api-code {
+  margin-top: 16px;
+  padding: 13px 14px;
+  overflow-x: auto;
+  border-radius: 12px;
+  background: #0C2C1D;
+  color: #CDE7D3;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.api-note { font-size: 12.5px !important; }
+
+.flow { display: flex; flex-direction: column; gap: 9px; margin: 16px 0 0; padding: 0; list-style: none; }
+.flow li { display: flex; align-items: flex-start; gap: 11px; }
+.flow .step-num { width: 26px; height: 26px; border-radius: 8px; font-size: 11px; }
+.flow div { display: flex; flex-direction: column; line-height: 1.4; }
+.flow strong { font-size: 12.5px; font-weight: 600; }
+.flow small { margin-top: 2px; color: var(--muted); font-size: 11.5px; line-height: 1.5; }
+.flow code { font-size: 10.5px; }
+
+.api-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--warm);
+}
+.api-status .status-dot {
+  width: 9px; height: 9px; flex: none; margin-top: 5px;
+  border-radius: 50%; background: var(--warning);
+}
+.api-status.is-live .status-dot { background: var(--success); }
+.api-status div { display: flex; flex-direction: column; gap: 2px; line-height: 1.45; }
+.api-status strong { font-size: 12.5px; font-weight: 600; }
+.api-status span:not(.status-dot) { color: var(--muted); font-size: 11.5px; }
+
 /* FAQ */
 .faq-wrap { max-width: 840px; }
 .faq details {
@@ -1010,6 +1089,7 @@ a { color: var(--forest); }
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .screens-row { grid-template-columns: 1fr; gap: 56px; }
   .install-grid { grid-template-columns: 1fr; gap: 40px; }
+  .api-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 

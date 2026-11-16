@@ -59,6 +59,7 @@
       <a href="#features">Features</a>
       <a href="#screens">Screens</a>
       <a href="#install">Install</a>
+      <a href="#api">API</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-light btn-sm" href="assets/agriConnect-1.1.1.apk" download>
@@ -522,6 +523,80 @@
   </div>
 </section>
 
+<!-- Render API ------------------------------------------------------ -->
+<section class="section" id="api">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">For developers</p>
+      <h2>The API behind the app</h2>
+      <p class="section-lead">
+        AgriConnect is powered by a hosted Node.js API on Render. It is public and documented —
+        use it to explore the data model, build your own client, or check which app version is current.
+      </p>
+    </div>
+
+    <div class="api-grid reveal">
+      <article class="api-card">
+        <div class="api-card-head">
+          <span class="f-icon"><svg class="i"><use href="#i-cloud-check" /></svg></span>
+          <span class="pill pill-good">Live</span>
+        </div>
+        <h3>Base URL</h3>
+        <code class="api-url">https://agriconnect-api-f55x.onrender.com/api/v1/</code>
+        <p>Interactive OpenAPI documentation is served at <code>/api-docs</code> on the same host.</p>
+
+        <h4>Try it now</h4>
+        <ul class="api-endpoints">
+          <li>
+            <a href="https://agriconnect-api-f55x.onrender.com/api/v1/version" target="_blank" rel="noopener"><code>GET /version</code></a>
+            <span>API version banner — no sign-in needed</span>
+          </li>
+          <li>
+            <a href="https://agriconnect-api-f55x.onrender.com/api/v1/app/version" target="_blank" rel="noopener"><code>GET /app/version</code></a>
+            <span>Current APK release and update rules — public</span>
+          </li>
+          <li>
+            <a href="https://agriconnect-api-f55x.onrender.com/api-docs" target="_blank" rel="noopener"><code>GET /api-docs</code></a>
+            <span>Full interactive reference</span>
+          </li>
+        </ul>
+
+        <div class="api-code"><span>curl https://agriconnect-api-f55x.onrender.com/api/v1/app/version</span></div>
+        <p class="api-note">
+          Everything else needs a bearer token from <code>POST /auth/login</code>, sent as
+          <code>Authorization: Bearer &lt;token&gt;</code>. Accounts are created in the app.
+        </p>
+      </article>
+
+      <article class="api-card">
+        <div class="api-card-head">
+          <span class="f-icon brown"><svg class="i"><use href="#i-download" /></svg></span>
+          <span class="pill pill-soft">Release flow</span>
+        </div>
+        <h3>How APK updates reach you</h3>
+        <p>
+          The APK is hosted on this site. Render publishes the version manifest that tells the app
+          where to fetch it. One push to each repository keeps both in step.
+        </p>
+        <ol class="flow">
+          <li><span class="step-num">1</span><div><strong>Build</strong><small>A new APK from Android Studio or Gradle</small></div></li>
+          <li><span class="step-num">2</span><div><strong>Publish here</strong><small>Replace the APK in this site's <code>assets/</code> and push to GitHub Pages</small></div></li>
+          <li><span class="step-num">3</span><div><strong>Tell Render</strong><small>Set <code>downloadUrl</code> in <code>version-manifest.json</code> to this site's APK URL, then push</small></div></li>
+          <li><span class="step-num">4</span><div><strong>App updates</strong><small>Devices check <code>/app/version</code> and download the new build</small></div></li>
+        </ol>
+
+        <div class="api-status" data-release-status>
+          <span class="status-dot"></span>
+          <div>
+            <strong data-release-title>Checking Render for the latest release…</strong>
+            <span data-release-detail>The download buttons use the bundled v1.1.1 APK until a release is published.</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ ------------------------------------------------------------ -->
 <section class="section section-tint" id="faq">
   <div class="wrap faq-wrap">
@@ -568,6 +643,7 @@
         <p>
           The project is MIT-licensed. The API, database migrations and Android source are all in the
           repository, and a debug build can point at any server from <em>Settings → Server</em>.
+          See <a href="#api">the API section</a> for the hosted service's base URL and examples.
         </p>
       </details>
     </div>
@@ -615,6 +691,7 @@
       <a href="#features">Features</a>
       <a href="#screens">Screens</a>
       <a href="#install">Install</a>
+      <a href="#api">API</a>
       <a href="#faq">FAQ</a>
     </div>
 
