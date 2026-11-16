@@ -132,7 +132,7 @@
       .then(function (release) {
         window.clearTimeout(timeout);
         if (!release || !release.available || !release.downloadUrl) {
-          useBundled('No release published on Render yet — the buttons use the bundled v1.1.1 APK.');
+          useBundled('No release published on Render yet — the buttons use the bundled v1.2.1 APK.');
           return;
         }
 
@@ -156,7 +156,7 @@
       })
       .catch(function () {
         window.clearTimeout(timeout);
-        useBundled('The buttons use the bundled v1.1.1 APK hosted on this site.');
+        useBundled('The buttons use the bundled v1.2.1 APK hosted on this site.');
       });
   }
 })();

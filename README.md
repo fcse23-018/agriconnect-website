@@ -27,7 +27,7 @@ agriconnect-website/
 │   ├── logo-mark.png                # 192 × 192 app mark / favicon
 │   ├── auth-background.jpg          # app auth screen background (hero)
 │   ├── og-image.jpg                 # 1200 × 630 social preview card
-│   └── agriConnect-1.2.0.apk        # the build people download
+│   └── agriConnect-1.2.1.apk        # the build people download
 └── README.md
 ```
 
@@ -129,7 +129,7 @@ app where to download it. Update both together:
       agriconnect-website/assets/agriConnect-<version>.apk
    ```
 
-3. Update the version, file size and SHA-256 in `index.html` (search for `1.2.0`, `data-apk-size`
+3. Update the version, file size and SHA-256 in `index.html` (search for `1.2.1`, `data-apk-size`
    and `data-apk-hash`), plus the `href` on every download link.
 4. Commit and push **this** repository. GitHub Pages redeploys automatically; the APK is now at
    `https://<your-user>.github.io/agriconnect-website/assets/agriConnect-<version>.apk`.
@@ -138,10 +138,10 @@ app where to download it. Update both together:
    ```json
    {
      "published": true,
-     "latestVersionName": "1.2.0",
-     "latestVersionCode": 4,
+     "latestVersionName": "1.2.1",
+     "latestVersionCode": 5,
      "minSupportedVersionCode": 1,
-     "downloadUrl": "https://<your-user>.github.io/agriconnect-website/assets/agriConnect-1.2.0.apk",
+     "downloadUrl": "https://<your-user>.github.io/agriconnect-website/assets/agriConnect-1.2.1.apk",
      "packageName": "bw.agriconnect",
      "releaseNotes": ["What changed in this build"],
      "releasedAt": "2026-11-17",
