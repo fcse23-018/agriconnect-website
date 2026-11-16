@@ -343,8 +343,8 @@ a { color: var(--forest); }
 .fc-icon.brown { background: var(--brown-container); color: var(--dark-brown); }
 .fc-icon .i { width: 17px; height: 17px; }
 
-.float-a { left: -6px; top: 96px; }
-.float-b { right: -10px; bottom: 104px; }
+.float-a { left: -44px; top: 150px; }
+.float-b { right: -44px; bottom: 160px; }
 
 @keyframes floatIn {
   from { opacity: 0; transform: translateY(14px) scale(.97); }
@@ -995,9 +995,17 @@ a { color: var(--forest); }
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
+/* Between the two-column and single-column hero the floating cards would sit on
+   top of the phone, so hold them back only in that narrow band. */
+@media (min-width: 1081px) and (max-width: 1220px) {
+  .float-a, .float-b { display: none; }
+}
+
 @media (max-width: 1080px) {
   .hero-grid { grid-template-columns: 1fr; gap: 24px; padding-bottom: 12px; }
   .hero-copy { max-width: 640px; }
+  .float-a { left: 8px; }
+  .float-b { right: 8px; }
   .hero-visual { min-height: 600px; }
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .screens-row { grid-template-columns: 1fr; gap: 56px; }
