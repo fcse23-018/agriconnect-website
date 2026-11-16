@@ -146,7 +146,7 @@ app where to download it. Update both together:
      "releaseNotes": ["What changed in this build"],
      "releasedAt": "2026-11-17",
      "checksumSha256": "<sha-256 of the APK>",
-     "sizeBytes": 25198223,
+     "sizeBytes": 25493487,
      "requiredMessage": "Please update AgriConnect to continue using satellite monitoring.",
      "optionalMessage": "A newer version of AgriConnect is available."
    }
