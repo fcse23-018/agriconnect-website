@@ -31,6 +31,10 @@ agriconnect-website/
 │   ├── screen-crop-health.png       # demo page: crop health screen (still image)
 │   ├── screen-market.png            # demo page: marketplace screen (still image)
 │   ├── screen-finance.png           # demo page: finance screen (still image)
+│   ├── step-1-home.png              # demo page: home step thumbnail
+│   ├── step-2-plots.png             # demo page: plots step thumbnail
+│   ├── step-4-analysis.png          # demo page: analysis step thumbnail
+│   ├── step-5-ussd.png              # demo page: USSD step thumbnail
 │   └── agriConnect-1.2.1.apk        # the build people download
 └── README.md
 ```

@@ -20,7 +20,7 @@
   .demo-hero .lead { max-width: 720px; }
   .section { padding: 62px 0; }
   .section + .section { border-top: 1px solid var(--border); }
-  .time { display:inline-block; min-width:64px; padding:3px 8px; border-radius:var(--pill); background:var(--green-container); color:var(--primary); font-size:11px; font-weight:700; }
+  .time { display:inline-block; min-width:64px; padding:3px 8px; border-radius:var(--pill); background:var(--green-container); color:var(--primary); font-size:11px; font-weight:700; align-self:flex-start; flex:none; }
   .demo-link { display:block; padding:18px 20px; border:1px solid var(--border); border-radius:18px; background:#fff; text-decoration:none; color:inherit; }
   .demo-link:hover { border-color:var(--primary); box-shadow:var(--shadow-card); }
   .demo-link strong { display:block; font-size:15px; color:var(--primary); }
@@ -32,6 +32,8 @@
   .screen-shot p { margin-top:4px; color:var(--muted); font-size:13px; line-height:1.55; }
   .ussd { background:#102b1c; color:#d8f3dd; border-radius:18px; padding:20px 22px; font-family:ui-monospace,Consolas,monospace; font-size:13px; line-height:1.65; overflow-x:auto; }
   .ussd b { color:#9fe8b4; }
+  .step-shot { float:right; width:112px; margin:0 0 10px 16px; border-radius:12px; border:1px solid var(--border); }
+  @media (max-width: 760px) { .step-shot { float:none; display:block; margin:10px auto; width:150px; } }
   .say { border-left:3px solid var(--primary); padding:2px 0 2px 14px; margin-top:8px; color:var(--muted); font-size:13.5px; font-style:italic; line-height:1.6; }
   .warn { border-left:4px solid var(--warning); background:#fff8e1; padding:14px 18px; border-radius:12px; font-size:13px; line-height:1.6; }
   @media (max-width: 760px) { .demo-hero { padding:48px 0 30px; } .section { padding:44px 0; } }
@@ -114,31 +116,36 @@
        anything in front of the panel.</p>
     <ol class="steps" style="margin-top:22px">
       <li><span class="time">0:00</span>
-        <div><h3>Open on the app's Home screen</h3>
+        <div>
+          <img class="step-shot" src="assets/step-1-home.png" alt="AgriConnect home screen with role-aware tabs and sync status" /><h3>Open on the app's Home screen</h3>
           <p>Phone in hand, app already signed in. Point out the role-aware bottom navigation and the offline / sync strips at the top.</p>
           <div class="say">"This is the farmer's home. Navigation changes by role, and the strips tell you instantly whether the phone is online and whether anything is waiting to sync."</div>
         </div>
       </li>
       <li><span class="time">0:30</span>
-        <div><h3>Farm → Plots tab</h3>
+        <div>
+          <img class="step-shot" src="assets/step-2-plots.png" alt="Plots tab with add plot, record shortcuts and plot cards" /><h3>Farm → Plots tab</h3>
           <p>Show <b>Add plot</b>, <b>Harvest records</b>, <b>Livestock</b> and a plot card with its sync badge.</p>
           <div class="say">"Plots are stored locally, so this tab works with no network at all. After our latest fix it keeps working even when the satellite service is unavailable."</div>
         </div>
       </li>
       <li><span class="time">1:30</span>
-        <div><h3>Farm → Overview tab</h3>
+        <div>
+          <img class="step-shot" src="assets/screen-crop-health.png" alt="Crop health overview with plot map and NDVI advice" /><h3>Farm → Overview tab</h3>
           <p>Show the farm map, plot status card, NDVI gauge and the advice card. If no reading exists, show the <b>Generate satellite data</b> / <b>Try again</b> actions.</p>
           <div class="say">"Crop health: a dated Sentinel-2 reading with a plain-language action, never a bare number. A failed read now stays on this tab with a working retry instead of blanking the whole screen."</div>
         </div>
       </li>
       <li><span class="time">3:00</span>
-        <div><h3>One more analysis tab, then the website</h3>
+        <div>
+          <img class="step-shot" src="assets/step-4-analysis.png" alt="Analysis tab showing the NDVI time-series chart" /><h3>One more analysis tab, then the website</h3>
           <p>Open <b>Chart</b>, <b>Weather</b>, <b>Growth</b>, <b>Events</b> or <b>Alerts</b> briefly; switch to the website tab on the laptop.</p>
           <div class="say">"Every view answers a farming question and scrolls fully on the phone. The same build is published on this HTTPS page and through the in-app updater."</div>
         </div>
       </li>
       <li><span class="time">4:00</span>
-        <div><h3>USSD on any phone</h3>
+        <div>
+          <img class="step-shot" src="assets/step-5-ussd.png" alt="USSD menus on a basic handset" /><h3>USSD on any phone</h3>
           <p>Run the local simulator and read the CON / END screens aloud (see the section below).</p>
           <div class="say">"And this is how a farmer with a feature phone reaches the same service — no app, no data connection."</div>
         </div>
